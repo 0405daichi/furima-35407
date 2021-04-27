@@ -16,8 +16,6 @@
 - has_many :items
 - has_many :comments
 - has_many :sold_items
-- has_one :profile
-- has_one :credit_cards
 
 
 ## itemsテーブル
@@ -83,5 +81,4 @@
 
 ### Association
 
-- belongs_to :user
 - belongs_to :sold_item
