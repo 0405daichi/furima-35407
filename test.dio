@@ -81,7 +81,7 @@
                 </mxCell>
                 <mxCell id="5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="KNdgHuzKxXJdAmyG9UMp-25">
                     <mxGeometry relative="1" as="geometry">
-                        <mxPoint x="400" y="210" as="targetPoint"/>
+                        <mxPoint x="400" y="180" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
                 <mxCell id="KNdgHuzKxXJdAmyG9UMp-25" value="profile" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;align=center;fontSize=14;" parent="1" vertex="1">

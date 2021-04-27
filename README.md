@@ -22,17 +22,17 @@
 
 ## itemsテーブル
 
-| Column             | Type      | Options                        |
-| ------------------ | --------- | ------------------------------ |
-| item_name          | string    | null: false                    |
-| item_description   | text      | null: false                    |
-| item_category_id   | integer   | null: false                    |
-| item_status_id     | integer   | null: false                    |
-| item_price         | integer   | null: false                    |
-| shipping_burden_id | integer   | null: false                    |
-| shipment_source_id | integer   | null: false                    |
-| date_guideline_id  | integer   | null: false                    |
-| user               | reference | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item_name          | string     | null: false                    |
+| item_description   | text       | null: false                    |
+| item_category_id   | integer    | null: false                    |
+| item_status_id     | integer    | null: false                    |
+| item_price         | integer    | null: false                    |
+| shipping_burden_id | integer    | null: false                    |
+| shipment_source_id | integer    | null: false                    |
+| date_guideline_id  | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -42,15 +42,15 @@
 
 ## sold_itemsテーブル
 
-| Column            | Type      | Options                        |
-| ----------------- | --------- | ------------------------------ |
-| user              | reference | null: false, foreign_key: true |
-| item              | reference | null: false, foreign_key: true |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| user              | references | null: false, foreign_key: true |
+| item              | references | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :profile
-- belongs_to :items
+- belongs_to :item
 - belongs_to :user
 
 
@@ -84,4 +84,4 @@
 ### Association
 
 - belongs_to :user
-- has_many :sold_items
+- has_one :sold_items
