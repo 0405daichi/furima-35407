@@ -20,7 +20,6 @@ RSpec.describe User, type: :model do
       end
     end
 
-
     context '新規登録できないとき' do
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
@@ -28,7 +27,7 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Nickname can't be blank"
       end
 
-      it 'emailが空では登録できない' do 
+      it 'emailが空では登録できない' do
         @user.email = ''
         @user.valid?
         expect(@user.errors.full_messages).to include "Email can't be blank"
@@ -39,7 +38,7 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = @user.email
         another_user.valid?
-        expect(another_user.errors.full_messages).to include "Email has already been taken"
+        expect(another_user.errors.full_messages).to include 'Email has already been taken'
       end
 
       it 'passwordが空では登録できない' do
@@ -52,7 +51,7 @@ RSpec.describe User, type: :model do
         @user.password = 'test1'
         @user.encrypted_password = 'test1'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Password is too short (minimum is 6 characters)"
+        expect(@user.errors.full_messages).to include 'Password is too short (minimum is 6 characters)'
       end
 
       it 'passwordが存在してもencrypted_passwordが空では登録できない' do
@@ -94,29 +93,26 @@ RSpec.describe User, type: :model do
       it 'family_nameが全角でなければ登録できない' do
         @user.family_name = 'name'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Family name に全角文字を使用してください"
+        expect(@user.errors.full_messages).to include 'Family name に全角文字を使用してください'
       end
 
       it 'first_nameが全角でなければ登録できない' do
         @user.first_name = 'name'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First name に全角文字を使用してください"
+        expect(@user.errors.full_messages).to include 'First name に全角文字を使用してください'
       end
 
       it 'family_rubyが全角でなければ登録できない' do
         @user.family_ruby = 'name'
         @user.valid?
-        expect(@user.errors.full_messages).to include "Family ruby に全角文字を使用してください"
+        expect(@user.errors.full_messages).to include 'Family ruby に全角文字を使用してください'
       end
 
       it 'first_rubyが全角でなければ登録できない' do
         @user.first_ruby = 'name'
         @user.valid?
-        expect(@user.errors.full_messages).to include "First ruby に全角文字を使用してください"
+        expect(@user.errors.full_messages).to include 'First ruby に全角文字を使用してください'
       end
-      
     end
-
   end
-
 end
