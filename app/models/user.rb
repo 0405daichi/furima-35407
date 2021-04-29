@@ -18,13 +18,13 @@ class User < ApplicationRecord
     validates :first_name
   end
 
-  validates :name, presence: true, format: {with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/, message: "全角カタカナのみで入力して下さい"} do
+  with_options presence: true, format: {with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/, message: "に全角カタカナのみで入力してください"} do
     validates :family_ruby
     validates :first_ruby
   end
 
-  VALID_PASSWORD_REGEX = /\A[a-z0-9]+\z/i
-  validates :password, format: { with: VALID_PASSWORD_REGEX }
+  VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i.freeze
+  validates :password, format: { with: VALID_PASSWORD_REGEX, message: "に半角英数字を使用してください"}
 
   # has_many :items
   # has_many :comments
