@@ -33,6 +33,12 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include "Email can't be blank"
       end
 
+      it 'emailに@が含まれなければ登録できない' do
+        @user.email = 'test.test.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include "Email is invalid"
+      end
+
       it '重複したemailが存在する場合登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -124,13 +130,13 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include 'First name に全角文字を使用してください'
       end
 
-      it 'family_rubyが全角でなければ登録できない' do
+      it 'family_rubyが全角カタカナでなければ登録できない' do
         @user.family_ruby = 'name'
         @user.valid?
         expect(@user.errors.full_messages).to include 'Family ruby に全角カタカナのみで入力してください'
       end
 
-      it 'first_rubyが全角でなければ登録できない' do
+      it 'first_rubyが全角カタカナでなければ登録できない' do
         @user.first_ruby = 'name'
         @user.valid?
         expect(@user.errors.full_messages).to include 'First ruby に全角カタカナのみで入力してください'

@@ -6,10 +6,6 @@ class User < ApplicationRecord
 
   with_options presence: true do      
     validates :nickname
-    validates :family_name
-    validates :first_name
-    validates :family_ruby
-    validates :first_ruby
     validates :birthday
   end
 
