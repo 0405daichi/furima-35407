@@ -5,7 +5,7 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item)
     @item.image = fixture_file_upload('app/assets/images/star.png')
   end
-  # pending "add some examples to (or delete) #{__FILE__}"
+
   describe '商品出品' do
     context '商品出品ができる場合' do
       it 'item_name,item_description,category_id,status_id,item_price,burden_id,source_id,guideline_idがあれば出品できる' do
