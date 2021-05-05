@@ -5,7 +5,7 @@ RSpec.describe Item, type: :model do
     @item = FactoryBot.build(:item)
     @item.image = fixture_file_upload('app/assets/images/star.png')
   end
-  pending "add some examples to (or delete) #{__FILE__}"
+  # pending "add some examples to (or delete) #{__FILE__}"
   describe '商品出品' do
     context '商品出品ができる場合' do
       it 'item_name,item_description,category_id,status_id,item_price,burden_id,source_id,guideline_idがあれば出品できる' do
@@ -71,6 +71,18 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include 'Item price is not a number'
       end
 
+      it 'item_priceが半角英数混合では出品できない' do
+        @item.item_price = '123aiu'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Item price is not a number"
+      end
+
+      it 'item_priceが半角英語だけでは出品できない' do
+        @item.item_price = 'aiueo'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Item price is not a number"
+      end
+
       it 'burden_idが1では出品できない' do
         @item.burden_id = 1
         @item.valid?
@@ -87,6 +99,12 @@ RSpec.describe Item, type: :model do
         @item.guideline_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include 'Guideline must be other than 1'
+      end
+
+      it '画像が空では出品できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Image can't be blank"
       end
     end
   end

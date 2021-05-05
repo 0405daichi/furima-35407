@@ -8,6 +8,7 @@ class Item < ApplicationRecord
     validates :burden_id
     validates :source_id
     validates :guideline_id
+    validates :image
   end
 
   validates :item_price,
