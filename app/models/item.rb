@@ -33,8 +33,8 @@ class Item < ApplicationRecord
   end
 
   belongs_to :user
-  has_many :comments
-  has_one :solid_item
+  # has_many :comments
+  # has_one :solid_item
   has_one_attached :image
 
   extend ActiveHash::Associations::ActiveRecordExtensions
