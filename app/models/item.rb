@@ -18,15 +18,18 @@ class Item < ApplicationRecord
 
   validates :item_price, format: { with: /\A^[0-9]+$\z/, message: 'は半角数字のみで入力してください' }
 
-  validates :category_id, numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 } do
+    validates :category_id
 
-  validates :status_id, numericality: { other_than: 1 }
+    validates :status_id
 
-  validates :burden_id, numericality: { other_than: 1 }
+    validates :burden_id
 
-  validates :source_id, numericality: { other_than: 1 }
+    validates :source_id
 
-  validates :guideline_id, numericality: { other_than: 1 }
+    validates :guideline_id
+
+  end
 
   belongs_to :user
   has_many :comments
