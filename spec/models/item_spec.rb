@@ -74,13 +74,13 @@ RSpec.describe Item, type: :model do
       it 'item_priceが半角英数混合では出品できない' do
         @item.item_price = '123aiu'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Item price is not a number"
+        expect(@item.errors.full_messages).to include 'Item price is not a number'
       end
 
       it 'item_priceが半角英語だけでは出品できない' do
         @item.item_price = 'aiueo'
         @item.valid?
-        expect(@item.errors.full_messages).to include "Item price is not a number"
+        expect(@item.errors.full_messages).to include 'Item price is not a number'
       end
 
       it 'burden_idが1では出品できない' do
