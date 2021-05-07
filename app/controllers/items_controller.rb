@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   def index
     @items = Item.all.order('created_at DESC')
-    # @sold_items = SoldItem.all
+    @sold_items = SoldItem.all
   end
 
   def new
@@ -16,6 +16,25 @@ class ItemsController < ApplicationController
     else
       render :new
     end
+  end
+
+  def show
+    @items = Item.all
+    @item = Item.find(params[:id])
+  end
+
+  def edit
+    @item = Item.find(params[:id])
+  end
+
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    item.destroy
   end
 
   private
