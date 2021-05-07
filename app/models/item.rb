@@ -29,7 +29,6 @@ class Item < ApplicationRecord
     validates :source_id
 
     validates :guideline_id
-
   end
 
   belongs_to :user
