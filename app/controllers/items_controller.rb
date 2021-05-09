@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_item, only: [:show, :edit, :update]
-  before_action :redirect_index, only: [:edit, :update, :destroy]
+  before_action :redirect_index, only: [:edit, :update]
   def index
     @items = Item.all.order('created_at DESC')
     @sold_items = SoldItem.all
@@ -36,7 +36,9 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    item.destroy
+    if item.destroy
+      redirect_to action: :index
+    end
   end
 
   private
