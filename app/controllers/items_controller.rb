@@ -23,16 +23,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user != @item.user
-      redirect_to root_path
-    end
+    redirect_index
   end
 
   def update
-    if current_user != @item.user
-      redirect_to root_path
-    end
-    
+    redirect_ondex
     if @item.update(item_params)
       redirect_to action: :index
     else
@@ -54,5 +49,11 @@ class ItemsController < ApplicationController
 
   def find_item
     @item = Item.find(params[:id])
+  end
+
+  def redirect_index
+    if current_user != @item.user
+      redirect_to root_path
+    end
   end
 end
