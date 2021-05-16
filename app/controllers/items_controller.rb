@@ -23,6 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    redirect_to root_path if @item.sold_item.present?
   end
 
   def update
