@@ -4,7 +4,6 @@ class ItemsController < ApplicationController
   before_action :redirect_index, only: [:edit, :update, :destroy]
   def index
     @items = Item.all.order('created_at DESC')
-    @sold_items = SoldItem.all
   end
 
   def new
@@ -56,4 +55,5 @@ class ItemsController < ApplicationController
       redirect_to root_path
     end
   end
+
 end
