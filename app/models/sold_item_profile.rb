@@ -9,13 +9,15 @@ class SoldItemProfile
     validates :address
     validates :phone_number
     validates :token
+    validates :user_id
+    validates :item_id
   end
   
   validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "Include hyphen(-)"}
   
-    validates :prefecture_id, numericality: {other_than: 0}
+    validates :prefecture_id, numericality: {other_than: 1}
   
-    validates :phone_number, format: {with: /\A0[5789]0[-]?\d{4}[-]?\d{4}\z/}
+    validates :phone_number, format: {with: /\A0[5789]0\d{4}\d{4}\z/}
     def save
       sold_item = SoldItem.create(user_id: user_id, item_id: item_id)
   

@@ -7,7 +7,12 @@ RSpec.describe SoldItemProfile, type: :model do
 
   describe '商品購入' do
     context '商品購入できるとき' do
-      it 'postal_code,prefecture_id,municipality,address,phone_number,tokenがあれば購入できる' do
+      it 'postal_code,prefecture_id,municipality,address,building_name,phone_number,tokenがあれば購入できる' do
+        expect(@sold_item_profile).to be_valid
+      end
+
+      it 'building_nameがなくても購入できる' do
+        @sold_item_profile.building_name = nil
         expect(@sold_item_profile).to be_valid
       end
     end
@@ -50,19 +55,38 @@ RSpec.describe SoldItemProfile, type: :model do
       end
 
       it 'postal_codeにhyphenがないと購入できない' do
-        @sold_item_profile.postal_code = 1234567
+        @sold_item_profile.postal_code = '1234567'
         @sold_item_profile.valid?
         expect(@sold_item_profile.errors.full_messages).to include "Postal code Include hyphen(-)"
       end
 
       it 'prefecture_idが1では購入できない' do
-        @sold_item_profile.prefecture_id = 0
+        @sold_item_profile.prefecture_id = 1
         @sold_item_profile.valid?
-        expect(@sold_item_profile.errors.full_messages).to include "Prefecture must be other than 0"
+        expect(@sold_item_profile.errors.full_messages).to include "Prefecture must be other than 1"
       end
 
       it 'phone_numberが12以上では購入できない' do
         @sold_item_profile.phone_number = 123456789012
+        @sold_item_profile.valid?
+        expect(@sold_item_profile.errors.full_messages).to include "Phone number is invalid"
+      end
+
+      it 'user_idが空では購入できない' do
+        @sold_item_profile.user_id = nil
+        @sold_item_profile.valid?
+        # binding.pry
+        expect(@sold_item_profile.errors.full_messages).to include "User can't be blank"
+      end
+
+      it 'item_idが空では購入できない' do
+        @sold_item_profile.item_id = nil
+        @sold_item_profile.valid?
+        expect(@sold_item_profile.errors.full_messages).to include "Item can't be blank"
+      end
+
+      it 'phone_numberが英数字混合では購入できない' do
+        @sold_item_profile.phone_number = '090abcd5678'
         @sold_item_profile.valid?
         expect(@sold_item_profile.errors.full_messages).to include "Phone number is invalid"
       end

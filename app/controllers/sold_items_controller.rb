@@ -1,4 +1,5 @@
 class SoldItemsController < ApplicationController
+  before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index, :create]
   before_action :move_to_root, only: [:index]
   def index
@@ -37,7 +38,6 @@ class SoldItemsController < ApplicationController
 
   def move_to_root
     redirect_to root_path if current_user == @item.user
-    redirect_to root_path unless user_signed_in?
     redirect_to root_path if @item.sold_item.present?
   end
 
