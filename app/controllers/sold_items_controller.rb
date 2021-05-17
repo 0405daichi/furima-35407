@@ -37,8 +37,7 @@ class SoldItemsController < ApplicationController
   end
 
   def move_to_root
-    redirect_to root_path if current_user == @item.user
-    redirect_to root_path if @item.sold_item.present?
+    redirect_to root_path if current_user == @item.user || @item.sold_item.present?
   end
 
 end

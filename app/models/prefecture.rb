@@ -51,5 +51,5 @@ class Prefecture < ActiveHash::Base
   ]
 
   include ActiveHash::Associations
-  has_many :sold_items
+  has_many :profiles
 end

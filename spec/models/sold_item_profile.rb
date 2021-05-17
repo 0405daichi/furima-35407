@@ -70,7 +70,7 @@ RSpec.describe SoldItemProfile, type: :model do
       end
 
       it 'phone_numberが12以上では購入できない' do
-        @sold_item_profile.phone_number = 123456789012
+        @sold_item_profile.phone_number = '123456789012'
         @sold_item_profile.valid?
         expect(@sold_item_profile.errors.full_messages).to include "Phone number is invalid"
       end
