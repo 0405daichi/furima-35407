@@ -2,7 +2,10 @@ require 'rails_helper'
 
 RSpec.describe SoldItemProfile, type: :model do
   before do
-    @sold_item_profile = FactoryBot.build(:sold_item_profile)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @sold_item_profile = FactoryBot.build(:sold_item_profile, item_id: item.id, user_id: user.id)
+    sleep 1
   end
 
   describe '商品購入' do

@@ -8,6 +8,9 @@ FactoryBot.define do
     burden_id { 2 }
     source_id { 2 }
     guideline_id { 2 }
+    after(:build) do |item|
+      item.image.attach(io: File.open('app/assets/images/star.png'), filename: 'star.png')
+    end
     association :user
   end
 end

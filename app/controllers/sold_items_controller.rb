@@ -1,7 +1,7 @@
 class SoldItemsController < ApplicationController
   before_action :authenticate_user!, only: [:index]
   before_action :set_item, only: [:index, :create]
-  before_action :move_to_root, only: [:index]
+  before_action :move_to_root, only: [:index, :create]
   def index
     @sold_item_profile = SoldItemProfile.new
   end
