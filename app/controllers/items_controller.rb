@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :basic_auth
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :find_item, only: [:show, :edit, :update, :destroy]
   before_action :redirect_index, only: [:edit, :update, :destroy]
@@ -59,6 +60,12 @@ class ItemsController < ApplicationController
 
   def redirect_root
     redirect_to root_path if @item.sold_item.present?
+  end
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
+    end
   end
 
 end
